@@ -38,7 +38,7 @@ router.post("/register", (req, res) => {
         d: "mm" // Default
       });
       const newUser = new User({
-        name: req.body.name,
+        nickname: req.body.nickname,
         email: req.body.email,
         avatar,
         isAdmin: false,

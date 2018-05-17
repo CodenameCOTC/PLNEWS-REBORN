@@ -28,13 +28,8 @@ const NewsSchema = new Schema({
   },
   comments: [
     {
-      text: {
-        type: String
-      },
-      author: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
-      }
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Comments"
     }
   ]
 });

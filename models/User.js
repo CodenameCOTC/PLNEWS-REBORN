@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-  name: {
+  nickname: {
     type: String,
     minlength: 2,
-    maxlength: 30,
+    maxlength: 15,
     required: true
   },
   password: {
