@@ -15,6 +15,8 @@ import Footer from "./components/layout/Footer";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import CreateNews from "./components/posts/CreateNews";
+import IndexNews from "./components/news/IndexNews";
+import ShowNews from "./components/show-news/ShowNews";
 
 import "./App.css";
 
@@ -46,8 +48,10 @@ class App extends Component {
           <div className="App">
             <Navbar />
             <div className="container">
+              <Route exact path="/" component={IndexNews} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/news/:news_id" component={ShowNews} />
               <Switch>
                 <PrivateRoute
                   exact

@@ -24,6 +24,7 @@ class Register extends Component {
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/");
     }
+    document.title = "Register";
   }
 
   componentWillReceiveProps(nextProps) {
@@ -79,6 +80,7 @@ class Register extends Component {
                   value={this.state.nickname}
                   onChange={this.onChange}
                   error={errors.nickname}
+                  info="We respect privacy that's why we need Nickname, this will be used for every comments u post."
                 />
                 <TextFieldGroup
                   placeholder="Password"

@@ -66,8 +66,8 @@ class Navbar extends Component {
             className="dropdown-menu"
             aria-labelledby="navbarDropdownMenuLink"
           >
-            <Link className="dropdown-item" to="/login">
-              Create Posts
+            <Link className="dropdown-item" to="/create-news">
+              Create News
             </Link>
             <a
               href=""

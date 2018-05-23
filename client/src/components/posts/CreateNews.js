@@ -4,6 +4,7 @@ import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { postNews } from "../../actions/postActions";
 
 class CreateNews extends Component {
   constructor() {
@@ -30,22 +31,27 @@ class CreateNews extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  onChangeEditor = ({ value }) => {
+    this.setState({ value });
+  };
+
   onSubmit(e) {
     e.preventDefault();
 
-    const newNews = {
+    const newsData = {
       title: this.state.title,
       image: this.state.image,
       author: this.props.auth.user.nickname,
-      tags: this.state.tags.split(",")
+      tags: this.state.tags.split(","),
+      body: this.state.body
     };
 
-    console.log(newNews);
+    // Call postNews actions
+    this.props.postNews(newsData, this.props.history);
   }
 
   render() {
     const { errors } = this.state;
-
     return (
       <div className="container">
         <div className="row">
@@ -79,6 +85,7 @@ class CreateNews extends Component {
                 error={errors.tags}
                 info="Tags will be split by comma(,)"
               />
+
               <TextAreaFieldGroup
                 placeholder="News Content"
                 name="body"
@@ -98,6 +105,7 @@ class CreateNews extends Component {
 
 CreateNews.propTypes = {
   auth: PropTypes.object.isRequired,
+  postNews: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired
 };
 
@@ -106,4 +114,4 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps)(withRouter(CreateNews));
+export default connect(mapStateToProps, { postNews })(withRouter(CreateNews));
