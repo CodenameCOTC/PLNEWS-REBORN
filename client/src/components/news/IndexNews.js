@@ -6,10 +6,6 @@ import Triangles from "../common/Triangles";
 import NewsFeed from "./NewsFeed";
 
 class IndexNews extends Component {
-  componentWillMount() {
-    document.title = "Index News";
-  }
-
   componentDidMount() {
     this.props.getNews();
   }
@@ -27,7 +23,7 @@ class IndexNews extends Component {
     let postContent;
     let warning;
 
-    if (news === undefined || loading) {
+    if (loading) {
       postContent = <Triangles />;
     } else {
       postContent = <NewsFeed news={news} />;

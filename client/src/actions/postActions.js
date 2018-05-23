@@ -1,6 +1,12 @@
 import axios from "axios";
 
-import { GET_ERRORS, GET_NEWS, GET_NEWS_DETAIL, NEWS_LOADING } from "./types";
+import {
+  GET_ERRORS,
+  GET_NEWS,
+  GET_NEWS_DETAIL,
+  NEWS_LOADING,
+  DELETE_NEWS
+} from "./types";
 
 // Post News
 export const postNews = (newsData, history) => dispatch => {
@@ -31,7 +37,7 @@ export const getNews = () => dispatch => {
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
-        payload: err.response.data
+        payload: null
       })
     );
 };
@@ -41,6 +47,24 @@ export const getShowNews = id => dispatch => {
   dispatch(setNewsLoading());
   axios
     .get(`/api/news/${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_NEWS_DETAIL,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_NEWS_DETAIL,
+        payload: null
+      })
+    );
+};
+
+// Posting comment
+export const postComments = (news_id, commentData) => dispatch => {
+  axios
+    .post(`/api/news/${news_id}/comments`, commentData)
     .then(res =>
       dispatch({
         type: GET_NEWS_DETAIL,
@@ -60,7 +84,11 @@ export const deleteNews = (id, history) => dispatch => {
   dispatch(setNewsLoading());
   axios
     .delete(`/api/news/${id}`)
-    .then(() => {
+    .then(res => {
+      dispatch({
+        type: DELETE_NEWS,
+        payload: id
+      });
       history.push("/");
     })
     .catch(err =>
@@ -70,6 +98,25 @@ export const deleteNews = (id, history) => dispatch => {
       })
     );
 };
+
+// Delete News
+export const removeComment = (news_id, comment_id) => dispatch => {
+  axios
+    .delete(`/api/news/${news_id}/comments/${comment_id}`)
+    .then(res => {
+      dispatch({
+        type: GET_NEWS_DETAIL,
+        payload: res.data
+      });
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err
+      })
+    );
+};
+
 
 // Set loading state
 export const setNewsLoading = () => {

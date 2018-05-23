@@ -9,3 +9,7 @@ body {
 .card-footer {
   font-family: "Courgette", cursive;
 }
+
+#card-news-index:hover {
+  transform: scale(1.05);
+}

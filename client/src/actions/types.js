@@ -4,3 +4,5 @@ export const POST_NEWS = "POST_NEWS";
 export const GET_NEWS = "GET_NEWS";
 export const NEWS_LOADING = "NEWS_LOADING";
 export const GET_NEWS_DETAIL = "GET_NEWS_DETAIL";
+export const DELETE_NEWS = "DELETE_NEWS";
+export const REMOVE_COMMENT = "REMOVE_COMMENT";

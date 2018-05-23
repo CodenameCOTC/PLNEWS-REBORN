@@ -3,13 +3,16 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 
-class NewsItem extends Component {
+class ShowNewsItem extends Component {
   render() {
     const { news } = this.props;
 
     return (
       <div className="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 d-flex">
-        <div className="card mt-2 flex-fill text-center">
+        <div
+          id="card-news-index"
+          className="card mt-2 mb-2 flex-fill text-center"
+        >
           <img src={news.image} alt={news.title} className="img-thumbnail" />
           <div className="card-body">
             <h5 id="title" className="card-title">
@@ -31,8 +34,8 @@ class NewsItem extends Component {
   }
 }
 
-NewsItem.propTypes = {
+ShowNewsItem.propTypes = {
   news: PropTypes.object.isRequired
 };
 
-export default NewsItem;
+export default ShowNewsItem;

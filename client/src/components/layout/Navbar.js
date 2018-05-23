@@ -65,10 +65,12 @@ class Navbar extends Component {
           <div
             className="dropdown-menu"
             aria-labelledby="navbarDropdownMenuLink"
-          >
+          > {user.isContentCreator ? (
             <Link className="dropdown-item" to="/create-news">
               Create News
             </Link>
+          ) : null}
+
             <a
               href=""
               onClick={this.onLogoutClick.bind(this)}
