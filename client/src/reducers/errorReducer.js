@@ -1,8 +1,7 @@
 import { GET_ERRORS } from "../actions/types";
 
 const initialState = {
-  isAuthenticated: false,
-  user: {}
+  errors: null
 };
 
 export default function(state = initialState, action) {

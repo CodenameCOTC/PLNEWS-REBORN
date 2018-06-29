@@ -117,10 +117,11 @@ export const removeComment = (news_id, comment_id) => dispatch => {
     );
 };
 
-
 // Set loading state
 export const setNewsLoading = () => {
   return {
     type: NEWS_LOADING
   };
 };
+
+// TODO: CLEAR EVERY ERROR BEFORE POST REQ

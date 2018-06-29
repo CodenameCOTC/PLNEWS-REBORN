@@ -2,7 +2,7 @@ import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 
-import { GET_ERRORS, SET_CURRENT_USER } from "./types";
+import { GET_ERRORS, SET_CURRENT_USER, CLEAR_CURRENT_PROFILE } from "./types";
 
 // Register User
 export const registerUser = (userData, history) => dispatch => {
@@ -46,6 +46,13 @@ export const setCurrentUser = decoded => {
   return {
     type: SET_CURRENT_USER,
     payload: decoded
+  };
+};
+
+// Clear current profile if the token is expired
+export const clearCurrentProfile = () => dispatch => {
+  return {
+    type: CLEAR_CURRENT_PROFILE
   };
 };
 
