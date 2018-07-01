@@ -9,14 +9,18 @@ class ShowNewsItem extends Component {
 
     return (
       <div className="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 d-flex">
-        <div
-          id="card-news-index"
-          className="card mt-2 mb-2 flex-fill text-center"
-        >
+        <div id="card-news-index" className="card mb-1 flex-fill text-center">
           <img src={news.image} alt={news.title} className="img-thumbnail" />
           <div className="card-body">
-            <h5 id="title" className="card-title">
-              {news.title}
+            <h5
+              id="title"
+              className="card-title"
+              data-toggle="tooltip"
+              data-placement="top"
+              title={news.title}
+            >
+              {news.title.substring(0, 50)}
+              {news.title.length > 50 ? " ..." : null}
             </h5>
           </div>
           <div className="card-footer text-muted">

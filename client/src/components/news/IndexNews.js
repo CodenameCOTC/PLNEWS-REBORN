@@ -11,11 +11,12 @@ class IndexNews extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.news.news !== undefined) {
-      document.title = "PL Index News";
-    } else {
-      document.title = "Loading...";
-    }
+    document.title = this.props.news.loading ? "PLN News Feed" : "Loading...";
+    // if (nextProps.news.news !== undefined) {
+    //   document.title = "PL Index News";
+    // } else {
+    //   document.title = "Loading...";
+    // }
   }
 
   render() {
@@ -28,15 +29,15 @@ class IndexNews extends Component {
     } else {
       postContent = <NewsFeed news={news} />;
       warning = (
-        <div className="container-fluid">
-          <a
+        <div className="container">
+          <p
             style={{ background: "#010b56", color: "white" }}
-            className="btn btn-lg btn-block mt-2"
+            className="btn btn-white mt-2"
           >
             News Feed
-          </a>
+          </p>
           <div
-            className="alert alert-warning alert-dismissible fade show mt-2 text-center"
+            className="alert alert-warning alert-dismissible fade show mt-1 text-center"
             role="alert"
           >
             <strong>
@@ -79,4 +80,7 @@ const mapStateToProps = state => ({
   news: state.news
 });
 
-export default connect(mapStateToProps, { getNews })(IndexNews);
+export default connect(
+  mapStateToProps,
+  { getNews }
+)(IndexNews);

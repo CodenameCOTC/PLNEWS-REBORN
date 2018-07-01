@@ -5,6 +5,10 @@ import { withRouter } from "react-router-dom";
 import { deleteNews } from "../../actions/postActions";
 
 class NewsItem extends Component {
+  componentDidMount() {
+    document.title = this.props.news.title;
+  }
+
   onDeleteClick(id) {
     this.props.deleteNews(id, this.props.history);
   }
@@ -41,7 +45,7 @@ class NewsItem extends Component {
 
     return (
       <div className="news-content">
-        <h1 className="text-center mt-1">{news.title}</h1>
+        <h3 className="text-center mt-1">{news.title}</h3>
         <img
           src={news.image}
           alt=""
@@ -72,4 +76,7 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { deleteNews })(withRouter(NewsItem));
+export default connect(
+  mapStateToProps,
+  { deleteNews }
+)(withRouter(NewsItem));

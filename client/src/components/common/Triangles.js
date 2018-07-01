@@ -9,9 +9,7 @@ export default () => {
         style={{ widht: "500px", margin: "auto", display: "block" }}
         alt="loading"
       />
-      <p className="text-center text-muted">
-        Fetching news data, please wait. Thanks for visiting this site!
-      </p>
+      <p className="text-center text-muted">Fetching news data, please wait.</p>
     </div>
   );
 };

@@ -5,11 +5,13 @@ import {
   GET_NEWS,
   GET_NEWS_DETAIL,
   NEWS_LOADING,
-  DELETE_NEWS
+  DELETE_NEWS,
+  CLEAR_ERRORS
 } from "./types";
 
 // Post News
 export const postNews = (newsData, history) => dispatch => {
+  dispatch(clearErrors());
   axios
     .post("/api/news", newsData)
     .then(res => {
@@ -25,6 +27,7 @@ export const postNews = (newsData, history) => dispatch => {
 
 // GET Index News
 export const getNews = () => dispatch => {
+  dispatch(clearErrors());
   dispatch(setNewsLoading());
   axios
     .get("api/news")
@@ -44,6 +47,7 @@ export const getNews = () => dispatch => {
 
 // Get Single News Deatil
 export const getShowNews = id => dispatch => {
+  dispatch(clearErrors());
   dispatch(setNewsLoading());
   axios
     .get(`/api/news/${id}`)
@@ -63,6 +67,7 @@ export const getShowNews = id => dispatch => {
 
 // Posting comment
 export const postComments = (news_id, commentData) => dispatch => {
+  dispatch(clearErrors());
   axios
     .post(`/api/news/${news_id}/comments`, commentData)
     .then(res =>
@@ -81,6 +86,7 @@ export const postComments = (news_id, commentData) => dispatch => {
 
 // Delete News
 export const deleteNews = (id, history) => dispatch => {
+  dispatch(clearErrors());
   dispatch(setNewsLoading());
   axios
     .delete(`/api/news/${id}`)
@@ -101,6 +107,7 @@ export const deleteNews = (id, history) => dispatch => {
 
 // Delete News
 export const removeComment = (news_id, comment_id) => dispatch => {
+  dispatch(clearErrors());
   axios
     .delete(`/api/news/${news_id}/comments/${comment_id}`)
     .then(res => {
@@ -121,6 +128,13 @@ export const removeComment = (news_id, comment_id) => dispatch => {
 export const setNewsLoading = () => {
   return {
     type: NEWS_LOADING
+  };
+};
+
+// Clear an error for before exc every actions
+export const clearErrors = () => {
+  return {
+    type: CLEAR_ERRORS
   };
 };
 

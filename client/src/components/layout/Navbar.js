@@ -65,12 +65,13 @@ class Navbar extends Component {
           <div
             className="dropdown-menu"
             aria-labelledby="navbarDropdownMenuLink"
-          > {user.isContentCreator ? (
-            <Link className="dropdown-item" to="/create-news">
-              Create News
-            </Link>
-          ) : null}
-
+          >
+            {" "}
+            {user.isContentCreator ? (
+              <Link className="dropdown-item" to="/create-news">
+                Create News
+              </Link>
+            ) : null}
             <a
               href=""
               onClick={this.onLogoutClick.bind(this)}
@@ -86,29 +87,24 @@ class Navbar extends Component {
     return (
       <div>
         <nav className="navbar navbar-expand-sm navbar-dark bg-primary">
-          <Link className="navbar-brand" to="/">
-            Premire League News
-          </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon" />
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul className="navbar-nav">
-              <li className="nav-item active">
-                <Link className="nav-link" to="/">
-                  News
-                </Link>
-              </li>
-            </ul>
-            {isAuthenticated ? authLinks : guestLinks}
+          <div className="container">
+            <Link className="navbar-brand" to="/">
+              Premire League News
+            </Link>
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarNavDropdown"
+              aria-controls="navbarNavDropdown"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon" />
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNavDropdown">
+              {isAuthenticated ? authLinks : guestLinks}
+            </div>
           </div>
         </nav>
       </div>
@@ -125,4 +121,7 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { logoutUser })(Navbar);
+export default connect(
+  mapStateToProps,
+  { logoutUser }
+)(Navbar);
